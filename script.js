@@ -395,6 +395,8 @@ function createEpisodeCardForGrid(item) {
     const img = item.thumbnail || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop';
     const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
     const duration = item.itunes_duration ? formatEpisodeDuration(item.itunes_duration) : '';
+    const episodeUrl = item.link || '#';
+    
     card.innerHTML = `
         <img class="episode-card-image" src="${img}" alt="Episode artwork for ${item.title}">
         <div class="episode-card-content">
@@ -404,8 +406,19 @@ function createEpisodeCardForGrid(item) {
                 ${duration ? '<span>•</span><span>'+duration+'</span>' : ''}
             </div>
             <p class="episode-card-description">${descClamped || ''}</p>
+            <a href="${episodeUrl}" target="_blank" rel="noopener noreferrer" class="episode-card-link">▶ Listen on Spotify</a>
         </div>
     `;
+    
+    // Make entire card clickable
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (e) => {
+        // Don't navigate if user clicked the link directly
+        if (e.target.tagName !== 'A') {
+            window.open(episodeUrl, '_blank', 'noopener,noreferrer');
+        }
+    });
+    
     return card;
 }
 
