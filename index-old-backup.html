@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wandering Wild Podcast | Adventures, Stories & Wild Conversations with Ashley Bradshaw</title>
+    <meta name="description" content="Join Ashley Bradshaw on Wandering Wild as she explores nature, adventure, and intimate conversations. Listen to inspiring stories about the wild places that shape our lives.">
+    <meta name="keywords" content="podcast, adventure podcast, nature podcast, outdoor podcast, Ashley Bradshaw, wilderness, storytelling">
+    <meta property="og:title" content="Wandering Wild Podcast">
+    <meta property="og:description" content="Adventures, Stories & Wild Conversations with Ashley Bradshaw">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <!-- Leaflet Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Merriweather:wght@300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Merriweather:wght@300;400&display=swap" rel="stylesheet"></noscript>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1 class="logo">Wandering Wild</h1>
+            <nav>
+                <ul>
+                    <li><a href="#listen">Listen</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Connect</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-backdrop">
+            <div id="hero-map"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">🎙️ New Episodes Every Tuesday</div>
+            <h2>Wandering Wild</h2>
+            <p class="tagline">Adventures, Stories & Wild Conversations with Ashley Bradshaw</p>
+            <div class="hero-actions">
+                <a href="#listen" class="cta-button primary">Listen Now</a>
+                <a href="#about" class="cta-button secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Episodes</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" data-target="10000">0</div>
+                <div class="stat-label">Listeners</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" data-target="25">0</div>
+                <div class="stat-label">Countries</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Listen Section -->
+    <section id="listen" class="listen-section">
+        <div class="container">
+            <div class="listen-header">
+                <div>
+                    <p class="section-badge">New episodes every Tuesday</p>
+                    <h2>Press play on today's wander</h2>
+                    <p class="listen-subtitle">Auto-updated from Ashley's Spotify feed. Nothing for you to maintain.</p>
+                </div>
+                <div class="listen-meta">
+                    <span class="live-dot"></span>
+                    Streaming everywhere right now
+                </div>
+            </div>
+            <div class="listen-grid">
+                <div class="now-playing-card" id="nowPlayingCard">
+                    <div class="now-playing-pill">Now Playing</div>
+                    <h3 id="nowPlayingTitle">Fetching the latest story...</h3>
+                    <p id="nowPlayingSummary">Give us a second while we pull the newest episode from the feed.</p>
+                    <div class="now-playing-meta">
+                        <div>
+                            <span class="meta-label">Release</span>
+                            <span class="meta-value" id="nowPlayingDate">—</span>
+                        </div>
+                        <div>
+                            <span class="meta-label">Duration</span>
+                            <span class="meta-value" id="nowPlayingDuration">—</span>
+                        </div>
+                    </div>
+                    <div class="now-playing-controls">
+                        <button class="control-btn" id="nowPlayingControl" disabled>
+                            <span class="control-icon">▶</span>
+                            <span id="nowPlayingControlLabel">Play Preview</span>
+                        </button>
+                        <a id="nowPlayingSpotify" href="https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3" target="_blank" rel="noopener" class="pill-link">Open in Spotify</a>
+                    </div>
+                    <audio id="nowPlayingAudio" preload="none"></audio>
+                </div>
+                <div class="player-panel">
+                    <div class="player-panel-header">
+                        <h3>Full Episode Queue</h3>
+                        <div class="live-pill">New every Tuesday</div>
+                    </div>
+                    <div class="player-wrapper elevated">
+                        <iframe 
+                            style="border-radius:16px" 
+                            src="https://open.spotify.com/embed/show/7LrO0DvfO4MdkmmTpo2hq3?utm_source=generator&theme=0" 
+                            width="100%" 
+                            height="450" 
+                            frameBorder="0" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="platform-grid">
+                        <a href="https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3" target="_blank" rel="noopener" class="platform-card spotify-card">
+                            <div class="platform-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                            </div>
+                            <div>
+                                <p class="platform-label">Spotify</p>
+                                <p class="platform-helper">Best for video episodes</p>
+                            </div>
+                        </a>
+                        <a href="https://podcasts.apple.com/si/podcast/wandering-wild/id1825568624" target="_blank" rel="noopener" class="platform-card apple-card">
+                            <div class="platform-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            </div>
+                            <div>
+                                <p class="platform-label">Apple Podcasts</p>
+                                <p class="platform-helper">Perfect for iOS listeners</p>
+                            </div>
+                        </a>
+                        <a href="https://www.youtube.com/@WanderingWildThePodcast" target="_blank" rel="noopener" class="platform-card youtube-card">
+                            <div class="platform-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            </div>
+                            <div>
+                                <p class="platform-label">YouTube</p>
+                                <p class="platform-helper">Watch the video version</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Never Miss a Tuesday Drop</h2>
+                <p>Get notified every Tuesday when new episodes drop, plus exclusive content and behind-the-scenes stories.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your email address" required>
+                        <button type="submit" class="submit-btn">Subscribe</button>
+                    </div>
+                    <p class="form-note">We respect your privacy. Unsubscribe anytime.</p>
+                </form>
+                <div class="form-success" id="formSuccess" style="display: none;">
+                    <p>✓ Thanks for subscribing! Check your inbox to confirm.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Episode Archive Section -->
+    <section class="episode-archive">
+        <div class="container">
+            <h2>Recent Episodes</h2>
+            <p class="section-intro">Here are our latest 10 episodes. For the full collection, listen on your favorite platform!</p>
+            <div class="archive-filters">
+                <input type="text" id="searchEpisodes" placeholder="Search episodes..." class="search-input">
+                <select id="sortEpisodes" class="sort-select">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="popular">Most Popular</option>
+                </select>
+            </div>
+            <div class="episodes-list" id="episodesList">
+                <!-- Episodes will be loaded here -->
+                <div class="episode-item">
+                    <div class="episode-thumbnail">🎙️</div>
+                    <div class="episode-details">
+                        <div class="episode-meta">
+                            <span class="episode-number">Episode 1</span>
+                            <span class="episode-date">Latest</span>
+                        </div>
+                        <h3>Introduction to Wandering Wild</h3>
+                        <p>Meet Ashley and discover what Wandering Wild is all about. A journey into nature, storytelling, and adventure begins here.</p>
+                        <a href="https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3" target="_blank" class="play-button">▶ Play Episode</a>
+                    </div>
+                </div>
+                <div class="episode-item">
+                    <div class="episode-thumbnail">🌲</div>
+                    <div class="episode-details">
+                        <div class="episode-meta">
+                            <span class="episode-number">Episode 2</span>
+                            <span class="episode-date">This Week</span>
+                        </div>
+                        <h3>Finding Your Path in the Wilderness</h3>
+                        <p>Exploring how nature helps us navigate life's biggest questions and find clarity in uncertain times.</p>
+                        <a href="https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3" target="_blank" class="play-button">▶ Play Episode</a>
+                    </div>
+                </div>
+                <div class="episode-item">
+                    <div class="episode-thumbnail">⛰️</div>
+                    <div class="episode-details">
+                        <div class="episode-meta">
+                            <span class="episode-number">Episode 3</span>
+                            <span class="episode-date">Featured</span>
+                        </div>
+                        <h3>Conversations at the Summit</h3>
+                        <p>Stories from fellow adventurers who've found their calling in the great outdoors.</p>
+                        <a href="https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3" target="_blank" class="play-button">▶ Play Episode</a>
+                    </div>
+                </div>
+            </div>
+            <div class="streaming-cta">
+                <h3>Want More Episodes?</h3>
+                <p>Listen to our complete collection on your favorite streaming platform</p>
+                <div class="streaming-buttons">
+                    <a href="https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3" target="_blank" rel="noopener" class="streaming-btn spotify-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                        Listen on Spotify
+                    </a>
+                    <a href="https://podcasts.apple.com/si/podcast/wandering-wild/id1825568624" target="_blank" rel="noopener" class="streaming-btn apple-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        Listen on Apple Podcasts
+                    </a>
+                    <a href="https://www.youtube.com/@WanderingWildThePodcast" target="_blank" rel="noopener" class="streaming-btn youtube-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        Watch on YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Episodes Section -->
+    <section class="popular-episodes">
+        <div class="container">
+            <h2>New to Wandering Wild? Start Here</h2>
+            <p class="section-intro">Discover our most popular episodes that listeners love</p>
+            <div class="episodes-grid">
+                <div class="episode-card">
+                    <div class="episode-icon">🎙️</div>
+                    <div class="episode-number">Episode 1</div>
+                    <h3>Introduction to Wandering Wild</h3>
+                    <p>Meet Ashley and discover what Wandering Wild is all about. A journey into nature, storytelling, and adventure begins here.</p>
+                    <a href="https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3" target="_blank" class="episode-link">Listen Now →</a>
+                </div>
+                <div class="episode-card featured">
+                    <div class="episode-icon">⭐</div>
+                    <div class="episode-number">Featured</div>
+                    <h3>Latest Adventures</h3>
+                    <p>Explore recent conversations and wild stories from the trail. Each episode brings you closer to nature and inspiration.</p>
+                    <a href="https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3" target="_blank" class="episode-link">Browse Episodes →</a>
+                </div>
+                <div class="episode-card">
+                    <div class="episode-icon">💚</div>
+                    <div class="episode-number">Community</div>
+                    <h3>Listener Favorites</h3>
+                    <p>See what the community is listening to. These episodes resonate deeply with fellow adventurers and nature lovers.</p>
+                    <a href="https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3" target="_blank" class="episode-link">Explore More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Listeners Are Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Wandering Wild has reignited my passion for adventure. Ashley's storytelling makes you feel like you're right there on the trail with her."</p>
+                    <div class="testimonial-author">
+                        <strong>Sarah M.</strong>
+                        <span>Outdoor Enthusiast</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Every episode is a breath of fresh air. This podcast reminds me why I fell in love with nature in the first place."</p>
+                    <div class="testimonial-author">
+                        <strong>Mike T.</strong>
+                        <span>Weekend Hiker</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"The perfect companion for my morning runs. Inspiring, authentic, and beautifully produced. Highly recommend!"</p>
+                    <div class="testimonial-author">
+                        <strong>Emily R.</strong>
+                        <span>Trail Runner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="placeholder-image">
+                        <p>📷 Add Ashley's photo or podcast artwork here</p>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>About Ashley & Wandering Wild</h2>
+                    <p class="intro">Join Ashley Bradshaw as she explores the wild places that shape our stories and the stories that shape our wild places.</p>
+                    <p>Wandering Wild is your invitation to slow down, step outside, and discover the extraordinary in the everyday. Through intimate conversations and personal adventures, Ashley brings you closer to nature, adventure, and the people who live life on their own terms.</p>
+                    <p>Whether you're planning your next adventure or dreaming from your couch, each episode is a reminder that the wild is never far away.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let’s Plan the Next Wild Story</h2>
+            <p>Drop a note like you would in DMs. Ashley reads everything.</p>
+            
+            <div class="contact-grid">
+                <div class="chat-preview">
+                    <div class="chat-header">
+                        <div>
+                            <p class="chat-label">Ashley is online</p>
+                            <p class="chat-status">Typical reply &lt; 12 hrs</p>
+                        </div>
+                        <div class="chat-avatars">
+                            <span>🌿</span>
+                            <span>🎧</span>
+                        </div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="chat-bubble incoming">Hey Ashley! I have a guest idea from our Guatemala trek.</div>
+                        <div class="chat-bubble outgoing">Love that. Send a few details and let's get it on the calendar.</div>
+                        <div class="chat-bubble incoming">Also—can we collaborate on a Portugal hike series?</div>
+                    </div>
+                    <div class="chat-footer">
+                        <p>Latest meetups: Puerto Rico • Portugal • Thailand</p>
+                        <div class="chat-socials">
+                            <a href="https://www.instagram.com/thewanderingwildpodcast/" target="_blank" rel="noopener">Instagram</a>
+                            <a href="https://www.youtube.com/@WanderingWildThePodcast" target="_blank" rel="noopener">YouTube</a>
+                            <button type="button" class="share-inline" onclick="copyLink()">Share link</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form chat-form" id="contactForm">
+                    <div class="quick-topics">
+                        <button type="button" class="topic-chip" data-subject="I have a story" data-template="Hey Ashley, I have a story you'd love...">Share a story</button>
+                        <button type="button" class="topic-chip" data-subject="Collaboration idea" data-template="Hi! I'd love to collaborate on...">Collaboration</button>
+                        <button type="button" class="topic-chip" data-subject="Sponsorship" data-template="Hi Ashley, let's talk sponsorship...">Sponsorship</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" placeholder="you@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Topic</label>
+                        <input type="text" id="subject" placeholder="What should we call this?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="Type just like you talk..." required></textarea>
+                    </div>
+                    <div class="form-footer">
+                        <p>Response window: Tuesdays 9a–4p PT. Emergency? DM @thewanderingwildpodcast.</p>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Wandering Wild Podcast | Hosted by Ashley Bradshaw</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <!-- Leaflet Map JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+/* Admin Mode Styles */
+
+/* Admin Panel */
+.admin-panel {
+    position: fixed;
+    top: 80px;
+    right: 30px;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(40px);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    overflow: hidden;
+    animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.admin-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: var(--primary-green);
+    color: white;
+}
+
+.admin-panel-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.admin-panel-header .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.admin-panel-header .close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.admin-panel-content {
+    padding: 20px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.admin-section {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.admin-section:last-child {
+    border-bottom: none;
+}
+
+.admin-section h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    margin-bottom: 8px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-dark);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.admin-btn:hover {
+    background: var(--neutral-100);
+    border-color: var(--primary-green);
+    transform: translateY(-1px);
+}
+
+.admin-section .form-group {
+    margin-bottom: 12px;
+}
+
+.admin-section .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--primary-dark);
+}
+
+.admin-section select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+}
+
+.admin-tips {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.admin-tips li {
+    margin-bottom: 6px;
+}
+
+/* Admin Mode Active Styles */
+body.admin-mode .editable {
+    outline: 2px dashed rgba(76, 175, 80, 0.3);
+    outline-offset: 4px;
+    cursor: text;
+    transition: outline 0.2s;
+}
+
+body.admin-mode .editable:hover {
+    outline-color: rgba(76, 175, 80, 0.6);
+    background: rgba(76, 175, 80, 0.05);
+}
+
+body.admin-mode .editable:focus {
+    outline: 2px solid var(--primary-green);
+    background: rgba(76, 175, 80, 0.1);
+}
+
+body.admin-mode .editable-link {
+    outline: 2px dashed rgba(33, 150, 243, 0.3);
+    outline-offset: 2px;
+    cursor: pointer;
+}
+
+body.admin-mode .editable-link:hover {
+    outline-color: rgba(33, 150, 243, 0.6);
+    background: rgba(33, 150, 243, 0.05);
+}
+
+body.admin-mode .editable-image {
+    outline: 2px dashed rgba(255, 152, 0, 0.3);
+    outline-offset: 4px;
+    cursor: pointer;
+}
+
+body.admin-mode .editable-image:hover {
+    outline-color: rgba(255, 152, 0, 0.6);
+    transform: scale(1.02);
+}
+
+/* Admin Notification */
+.admin-notification {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: rgba(29, 29, 31, 0.95);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.admin-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 734px) {
+    .admin-panel {
+        right: 15px;
+        left: 15px;
+        width: auto;
+        max-height: calc(100vh - 100px);
+    }
+    
+    .admin-toggle {
+        right: 15px;
+        bottom: 80px;
+    }
+}

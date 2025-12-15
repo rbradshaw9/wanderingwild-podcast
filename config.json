@@ -1,0 +1,32 @@
+{
+  "podcastInfo": {
+    "name": "Wandering Wild Podcast",
+    "spotifyShowId": "7LrO0DvfO4MdkmmTpo2hq3",
+    "rssFeedUrl": "https://anchor.fm/s/1046b6a34/podcast/rss",
+    "spotifyCreatorUrl": "https://creators.spotify.com/pod/profile/ashley-bradshaw2",
+    "youtubeChannelUrl": "https://www.youtube.com/@WanderingWildThePodcast"
+  },
+  "episodeVideos": {
+    "note": "Add YouTube video IDs for episodes that have video versions. Format: 'Episode Title or GUID': 'YouTube_Video_ID'",
+    "example": {
+      "Episode 1": "dQw4w9WgXcQ"
+    }
+  },
+  "stats": {
+    "episodes": 50,
+    "listeners": 10000,
+    "countries": 25,
+    "lastUpdated": "2024-12-02"
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/thewanderingwildpodcast/",
+    "youtube": "https://www.youtube.com/@WanderingWildThePodcast",
+    "spotify": "https://open.spotify.com/show/7LrO0DvfO4MdkmmTpo2hq3",
+    "applePodcasts": "https://podcasts.apple.com/si/podcast/wandering-wild/id1825568624"
+  },
+  "settings": {
+    "releaseDay": "Tuesday",
+    "adminPassword": "wandering2024",
+    "enableRSSAutoUpdate": true
+  }
+}
